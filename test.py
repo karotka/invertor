@@ -188,7 +188,8 @@ class Invertor:
             self.gs.automaticAdjustmentSolarMaximumChargingPower = 'Battery maximum'
 
 
-        print (self.gs.__dict__)
+        for k, v in self.gs.__dict__.items():
+            print ("%s: %s" % (k, v))
 
 
 
@@ -196,7 +197,11 @@ class Invertor:
 inv = Invertor()
 
 while 1:
-    inv.getGeneralStatus()
+    inv.refreshData()
+    for k, v in inv.__dict__.items():
+        print ("%s: %s" % (k, v))
+
+    print ("------------------------------------------------------------------------------------------------------------")
     time.sleep(2)
 
 
