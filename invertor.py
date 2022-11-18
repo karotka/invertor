@@ -5,7 +5,7 @@ import time
 import logging
 import pandas as pd
 import datetime
-import daemon
+#import daemon
 from influxdb import DataFrameClient
 from crc16pure import crc16xmodem
 
