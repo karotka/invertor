@@ -88,23 +88,24 @@ class Invertor:
 
 
         self.serial.write(QPIGS)
-        data = self.call(117)
-        self.gridVoltage         = data[0]
-        self.gridFreq            = data[1]
-        self.outputVoltage       = data[2]
-        self.outputFreq          = data[3]
-        self.outputPowerApparent = data[4]
-        self.outputPowerActive   = data[5]
-        self.loadPercent         = data[6]
-        self.busVoltage          = data[7]
-        self.batteryVoltage      = data[8]
-        self.batteryCurrent      = data[9]
-        self.batteryCapacity     = data[10]
-        self.temperature         = data[11]
-        self.solarCurrent        = data[12]
-        self.solarVoltage        = data[13]
-        self.batteryVoltageSCC   = data[14]
-        self.batteryDischargeCurrent = data[15]
+        data = self.call(200)
+        print (data)
+        #self.gridVoltage         = data[0]
+        #self.gridFreq            = data[1]
+        #self.outputVoltage       = data[2]
+        #self.outputFreq          = data[3]
+        #self.outputPowerApparent = data[4]
+        #self.outputPowerActive   = data[5]
+        #self.loadPercent         = data[6]
+        #self.busVoltage          = data[7]
+        #self.batteryVoltage      = data[8]
+        #self.batteryCurrent      = data[9]
+        #self.batteryCapacity     = data[10]
+        #self.temperature         = data[11]
+        #self.solarCurrent        = data[12]
+        #self.solarVoltage        = data[13]
+        #self.batteryVoltageSCC   = data[14]
+        #self.batteryDischargeCurrent = data[15]
 
     def set(self, command, value):
         crc = crc16(("%s%s" % (command, value)).encode(encoding = 'UTF-8'))
@@ -188,27 +189,19 @@ class Invertor:
             self.gs.automaticAdjustmentSolarMaximumChargingPower = 'Battery maximum'
 
 
-        for k, v in self.gs.__dict__.items():
-            print ("%s: %s" % (k, v))
+        print (self.gs.__dict__)
 
 
 
 #inv = Invertor(False)
 inv = Invertor()
 
-while 1:
-    inv.refreshData()
-    for k, v in inv.__dict__.items():
-        print ("%s: %s" % (k, v))
-
-    print ("------------------------------------------------------------------------------------------------------------")
-    time.sleep(2)
-
-
 # set utiliti charge
 #print (inv.setChargeCurrent(10))
+while 1:
+    inv.refreshData()
+    time.sleep(3)
 
-#inv.getGeneralStatus()
 #print (inv.set("MUCHGC", "020"))
 
 
