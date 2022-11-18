@@ -227,7 +227,7 @@ columns = [
 ]
 
 def getClient():
-    return DataFrameClient('192.168.0.224', 8086, 'root', 'root', 'invertor')
+    return DataFrameClient('127.0.0.1', 8086, 'root', 'root', 'invertor')
 
 
 lastMinute = -1
@@ -294,15 +294,15 @@ while True:
             client = getClient()
             client.write_points(dfAll, 'invertor', protocol = 'line')
 
-            batteryVoltage = dfAll.iloc[0]["batteryVoltage"]
-            if batteryVoltage > 58.16:
-                cr = inv.setChargeCurrent(10, batteryVoltage)
-            elif batteryVoltage > 57.9:
-                cr = inv.setChargeCurrent(40, batteryVoltage)
-            elif batteryVoltage > 57.5:
-                cr = inv.setChargeCurrent(60, batteryVoltage)
-            elif batteryVoltage <= 57.4:
-                cr = inv.setChargeCurrent(80, batteryVoltage)
+            #batteryVoltage = dfAll.iloc[0]["batteryVoltage"]
+            #if batteryVoltage > 58.16:
+            #    cr = inv.setChargeCurrent(10, batteryVoltage)
+            #elif batteryVoltage > 57.9:
+            #    cr = inv.setChargeCurrent(40, batteryVoltage)
+            #elif batteryVoltage > 57.5:
+            #    cr = inv.setChargeCurrent(60, batteryVoltage)
+            #elif batteryVoltage <= 57.4:
+            #    cr = inv.setChargeCurrent(80, batteryVoltage)
 
             gs = inv.getGeneralStatus()
             df1 = pd.DataFrame(gs.__dict__, index=[0])
