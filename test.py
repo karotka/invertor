@@ -20,11 +20,11 @@ QPIRI  = b'QPIRI\xf8T\r'
 class Invertor:
 
     def __init__(self, connect = True):
+        self.debug = False
 
         if connect:
             self._open()
 
-        self.debug = False
 
 
     def _open(self):
@@ -118,5 +118,5 @@ while 1:
     #inv.refreshData()
 
     inv.sendData(QPIGS2)
-    inv.readData()
+    inv.readData(120)
     time.sleep(3)
